@@ -1,4 +1,4 @@
-package project.shimozukuri.pastebin.dtos;
+package project.shimozukuri.pastebin.dtos.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

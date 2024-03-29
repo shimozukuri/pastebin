@@ -1,4 +1,4 @@
-package project.shimozukuri.pastebin.dtos;
+package project.shimozukuri.pastebin.dtos.authorization;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package project.shimozukuri.pastebin.services;
+package project.shimozukuri.pastebin.services.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import project.shimozukuri.pastebin.dtos.RegistrationUserDto;
+import project.shimozukuri.pastebin.dtos.authorization.RegistrationUserDto;
 import project.shimozukuri.pastebin.entities.User;
 import project.shimozukuri.pastebin.repositories.UserRepository;
 
@@ -18,10 +18,10 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class UserService implements UserDetailsService {
+public class UserServiceImpl implements UserDetailsService {
 
     private final UserRepository userRepository;
-    private final RoleService roleService;
+    private final RoleServiceImpl roleServiceImpl;
     private final PasswordEncoder passwordEncoder;
 
     public Optional<User> findByUsername(String username) {
@@ -49,7 +49,7 @@ public class UserService implements UserDetailsService {
         user.setUsername(registrationUserDto.getUsername());
         user.setEmail(registrationUserDto.getEmail());
         user.setPassword(passwordEncoder.encode(registrationUserDto.getPassword()));
-        user.setRoles(List.of(roleService.getUserRole()));
+        user.setRoles(List.of(roleServiceImpl.getUserRole()));
         return userRepository.save(user);
     }
 }

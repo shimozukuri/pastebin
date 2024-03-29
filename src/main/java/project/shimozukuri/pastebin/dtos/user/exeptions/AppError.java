@@ -1,4 +1,4 @@
-package project.shimozukuri.pastebin.exeptions;
+package project.shimozukuri.pastebin.dtos.user.exeptions;
 
 import lombok.Data;
 

@@ -1,26 +1,26 @@
-package project.shimozukuri.pastebin.controllers;
+package project.shimozukuri.pastebin.controllers.authorization;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import project.shimozukuri.pastebin.dtos.JwtRequestDto;
-import project.shimozukuri.pastebin.dtos.RegistrationUserDto;
-import project.shimozukuri.pastebin.services.AuthService;
+import project.shimozukuri.pastebin.dtos.authorization.JwtRequestDto;
+import project.shimozukuri.pastebin.dtos.authorization.RegistrationUserDto;
+import project.shimozukuri.pastebin.services.impl.AuthServiceImpl;
 
 @RestController
 @RequiredArgsConstructor
 public class AuthController {
-    private final AuthService authService;
+    private final AuthServiceImpl authServiceImpl;
 
     @PostMapping("/auth")
     public ResponseEntity<?> createAuthToken(@RequestBody JwtRequestDto authRequest) {
-        return authService.createAuthToken(authRequest);
+        return authServiceImpl.createAuthToken(authRequest);
     }
 
     @PostMapping("/registration")
     public ResponseEntity<?> createNewUser(@RequestBody RegistrationUserDto registrationUserDto) {
-        return authService.createNewUser(registrationUserDto);
+        return authServiceImpl.createNewUser(registrationUserDto);
     }
 }
