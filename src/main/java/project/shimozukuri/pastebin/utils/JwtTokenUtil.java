@@ -1,12 +1,16 @@
 package project.shimozukuri.pastebin.utils;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+import project.shimozukuri.pastebin.exeptions.AccessDeniedException;
 import project.shimozukuri.pastebin.utils.properties.JwtProperties;
 
 import javax.crypto.SecretKey;
@@ -17,8 +21,10 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Component
+@RequiredArgsConstructor
+@Slf4j
 public class JwtTokenUtil {
-    private JwtProperties jwtProperties;
+    private final JwtProperties jwtProperties;
 
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
@@ -41,7 +47,12 @@ public class JwtTokenUtil {
     }
 
     public String getUsername(String token) {
-        return getAllClaimsFromToken(token).getSubject();
+        try {
+            return getAllClaimsFromToken(token).getSubject();
+        } catch (ExpiredJwtException e) {
+            log.debug("Время жизи токена вышло");
+            throw new AccessDeniedException("Время жизи токена вышло");
+        }
     }
 
     public List<String> getRoles(String token) {
