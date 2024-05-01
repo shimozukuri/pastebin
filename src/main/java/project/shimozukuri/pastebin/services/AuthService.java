@@ -1,12 +1,13 @@
 package project.shimozukuri.pastebin.services;
 
-import org.springframework.http.ResponseEntity;
 import project.shimozukuri.pastebin.dtos.authorization.JwtRequestDto;
-import project.shimozukuri.pastebin.dtos.authorization.RegistrationUserDto;
+import project.shimozukuri.pastebin.dtos.authorization.JwtResponseDto;
+import project.shimozukuri.pastebin.dtos.user.UserDto;
+import project.shimozukuri.pastebin.entities.User;
 
 public interface AuthService {
 
-    ResponseEntity<?> createAuthToken(JwtRequestDto authRequest);
+    JwtResponseDto createAuthToken(JwtRequestDto authRequest);
 
-    ResponseEntity<?> createNewUser(RegistrationUserDto registrationUserDto);
+    User createNewUser(UserDto userDto);
 }

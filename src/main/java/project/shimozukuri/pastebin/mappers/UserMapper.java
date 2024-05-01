@@ -5,5 +5,5 @@ import project.shimozukuri.pastebin.dtos.user.UserDto;
 import project.shimozukuri.pastebin.entities.User;
 
 @Mapper(componentModel = "spring")
-public interface UserMapper extends Mappable<User, UserDto>{
+public interface UserMapper extends Mappable<User, UserDto> {
 }

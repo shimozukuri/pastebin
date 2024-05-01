@@ -1,19 +1,21 @@
 package project.shimozukuri.pastebin.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 @Entity
 @Data
 @RequiredArgsConstructor
-@Table(name = "roles", schema = "pastebin")
-public class Role {
+@AllArgsConstructor
+@Table(name = "notes", schema = "pastebin")
+public class Note {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer id;
+    private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "title")
+    private String title;
 }
