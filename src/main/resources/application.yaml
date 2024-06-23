@@ -18,5 +18,9 @@ spring:
     show-sql: true
   main:
     allow-circular-references: true
+  liquibase:
+    change-log: classpath:liquibase/db.changelog.yaml
+    enabled: true
+    default-schema: pastebin
 springdoc:
   override-with-generic-response: false
