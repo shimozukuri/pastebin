@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: project.shimozukuri.pastebin.service.impl.AuthServiceImplTests
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.414 s -- in project.shimozukuri.pastebin.service.impl.AuthServiceImplTests
