@@ -1,16 +1,14 @@
 pipeline {
     agent { label 'ubuntu20' }
 
+    parameters {
+
+    }
+
     stages {
-        stage('Docker version') {
-            steps {
-                sh "echo $USER"
-                sh 'docker version'
-            }
-        }
         stage('Delete workspace before build starts') {
             steps {
-                echo 'Deleting worckspace'
+                echo 'Deleting workspace'
                 deleteDir()
             }
         }
