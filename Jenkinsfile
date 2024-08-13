@@ -1,10 +1,6 @@
 pipeline {
     agent { label 'ubuntu20' }
 
-    parameters {
-
-    }
-
     stages {
         stage('Delete workspace before build starts') {
             steps {
