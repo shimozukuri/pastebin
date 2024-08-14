@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: project.shimozukuri.pastebin.PastebinApplicationTests
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.905 s -- in project.shimozukuri.pastebin.PastebinApplicationTests

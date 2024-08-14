@@ -1,0 +1,9 @@
+name: Test application
+on: push
+jobs:
+  runs-on: ubuntu-latest
+  steps:
+    - name: Get repository code
+      uses: actions/checkout@v4
+    - name: Test app
+      run: mvn test

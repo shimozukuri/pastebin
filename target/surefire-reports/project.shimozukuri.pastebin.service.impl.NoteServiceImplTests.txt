@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: project.shimozukuri.pastebin.service.impl.NoteServiceImplTests
--------------------------------------------------------------------------------
-Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.160 s -- in project.shimozukuri.pastebin.service.impl.NoteServiceImplTests
