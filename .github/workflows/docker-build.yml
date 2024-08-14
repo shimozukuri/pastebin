@@ -13,10 +13,7 @@ jobs:
           java-version: '17'
       - name: Package app
         run: mvn package -DskipTests
-      - name: Docker build
-        run: docker build -d pastebin/pastebin-images:0.1 .
-      - name: Check and delete docker containers
-        run: | 
-          docker ps
-          docker stop $(docker ps -a -q)
-          docker rm $(docker ps -a -q)
+      - name: Docker run
+        run: docker compose up
+      - name: Check docker containers
+        run: docker ps
