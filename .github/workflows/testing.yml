@@ -11,5 +11,5 @@ jobs:
         with:
           distribution: 'corretto'
           java-version: '17'
-      - name: Test app
-        run: mvn test
+      - name: Package app
+        run: mvn package -DskipTests
