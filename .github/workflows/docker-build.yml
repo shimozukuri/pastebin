@@ -13,5 +13,5 @@ jobs:
           java-version: '17'
       - name: Package app
         run: mvn package -DskipTests
-      - name: Check docker
-        run: docker -v
+      - name: Docker build
+        run: docker build -t pastebin/pastebin-images:0.1 .
