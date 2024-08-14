@@ -4,6 +4,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: Install Java
+        run: apt install openjdk-17-jdk
       - name: Get repository code
         uses: actions/checkout@v4
       - name: Test app
