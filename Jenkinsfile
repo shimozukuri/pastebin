@@ -17,6 +17,11 @@ pipeline {
                 sh 'ls -la'
             }
         }
+        stage('Package') {
+            steps {
+                sh 'mvn package -DskipTests'
+            }
+        }
         stage('Test') {
             steps {
                 sh 'docker build -t pastebin/jenkins-images:0.1 .'

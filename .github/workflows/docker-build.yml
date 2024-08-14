@@ -14,6 +14,6 @@ jobs:
       - name: Package app
         run: mvn package -DskipTests
       - name: Docker run
-        run: docker compose up
+        run: docker compose up -d
       - name: Check docker containers
         run: docker ps
