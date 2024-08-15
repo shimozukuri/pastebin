@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - master
+    paths-ignore:
+      - '.github'
 jobs:
   test:
     runs-on: ubuntu-latest
