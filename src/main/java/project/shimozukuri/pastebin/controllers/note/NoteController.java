@@ -22,6 +22,7 @@ public class NoteController {
     }
 
     @PostMapping("/new")
+    @PreAuthorize("@cse.canAccessUser(#userId)")
     public NoteDto create(
             @RequestBody NoteDto noteDto,
             @PathVariable(value = "userId") Long userId
