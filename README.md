@@ -1,13 +1,15 @@
 # pastebin
-Pastebin is a service where you can store any text for easy exchange.
 
-### Stack
+Pastebin is a service where you can store any text for easy exchange. The service stores notes in the Minio S3 storage.
+
+## Stack
 - Java 17
 - Maven
 - Spring
 - JWT
 - Liquibase
 - Mapstruct
+- Lombok
 - Swagger
 - Mockito
 - GitHub Actions
@@ -16,9 +18,11 @@ Pastebin is a service where you can store any text for easy exchange.
 - Jenkins
 - PostreSQL
 
+# API
+
 ## Authorization
 
-### `POST` [/auth](http://localhost:8080/auth)
+### `POST` /auth
 
 Authenticate user and return authorization token
 
@@ -29,7 +33,7 @@ Request body:
 Response body:
 - `token` - authorization token
 
-### `POST` [/register](http://localhost:8080/register)
+### `POST` /register
 
 Create new user
 
@@ -41,17 +45,17 @@ Request body:
 
 ##  Notes
 
-### `GET` [/user/{userId}/notes](http://localhost:8080/user/1/notes)
+### `GET` /user/{userId}/notes
 
 Response body:
 - return all notes user with id `{userId}`
 
-### `GET` [/user/{userId}/note/{noteId}](http://localhost:8080/user/1/note/1)
+### `GET` /user/{userId}/note/{noteId}
 
 Response body:
 - return notes with id `{noteId}` user with id `{userId}`
 
-### `POST` [/user/{userId}/note/new](http://localhost:8080/user/1/new)
+### `POST` /user/{userId}/note/new
 
 Create new note for user with id `{userId}`
 
@@ -63,7 +67,7 @@ Response body:
 - `title` - title of note
 - `content` - content the note
 
-### `PUT` [/user/{userId}/note/{noteId}/update](http://localhost:8080/user/1/note/1)
+### `PUT` /user/{userId}/note/{noteId}/update
 
 Changes the content and title of the note with id `{noteId}` user with id `{userId}`
 
@@ -75,13 +79,13 @@ Response body:
 - `title` - title of note
 - `content` - title of note
 
-### `DELETE` [/user/{userId}/note/{noteId}/delete](http://localhost:8080/user/1/note/1)
+### `DELETE` /user/{userId}/note/{noteId}/delete
 
 Delete note with id `{noteId}` user with id `{userId}`
 
 ## User
 
-### `GET` [/user/{userId}](http://localhost:8080/user/1)
+### `GET` /user/{userId}
 
 Return user with id `{userId}`
 
@@ -92,7 +96,7 @@ Response body:
 - `email` - user email
 - `notes` - user notes
 
-### `PUT` [/user/{userId}/update](http://localhost:8080/user/1)
+### `PUT` /user/{userId}/update
 
 Update user with id `{userId}`
 
@@ -110,6 +114,6 @@ Response body:
 - `email` - user email
 - `notes` - user notes
 
-### `DELETE` [/user/{userId}/delete](http://localhost:8080/user/1)
+### `DELETE` /user/{userId}/delete
 
-Delete user with id {userId}
+Delete user with id `{userId}`
