@@ -7,8 +7,8 @@ values ('User note'),
        ('Admin note');
 
 insert into roles (name)
-values ('USER_ROLE'),
-       ('ADMIN_ROLE');
+values ('ROLE_USER'),
+       ('ROLE_ADMIN');
 
 insert into users_notes (user_id, note_id)
 values (1, 1),

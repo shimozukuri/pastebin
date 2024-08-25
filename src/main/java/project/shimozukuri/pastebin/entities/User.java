@@ -1,5 +1,6 @@
 package project.shimozukuri.pastebin.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,6 +17,7 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     @Column(name = "id")
     private Long id;
 
@@ -29,6 +31,7 @@ public class User {
     private String email;
 
     @ManyToMany
+    @JsonIgnore
     @JoinTable(
             name = "users_roles",
             schema = "pastebin",

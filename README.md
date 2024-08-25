@@ -26,18 +26,18 @@ Pastebin is a service where you can store any text for easy exchange. The servic
 
 Authenticate user and return authorization token
 
-Request body:
+**Request body:**
 - `username` - username
 - `password` - user password
 
-Response body:
+**Response body:**
 - `token` - authorization token
 
 ### `POST` /register
 
 Create new user
 
-Request body:
+**Request body:**
 - `username` - username
 - `password` - user password
 - `confirmPassword` - password confirmation
@@ -47,23 +47,23 @@ Request body:
 
 ### `GET` /user/{userId}/notes
 
-Response body:
+**Response body:**
 - return all notes user with id `{userId}`
 
 ### `GET` /user/{userId}/note/{noteId}
 
-Response body:
+**Response body:**
 - return notes with id `{noteId}` user with id `{userId}`
 
 ### `POST` /user/{userId}/note/new
 
 Create new note for user with id `{userId}`
 
-Request body:
+**Request body:**
 - `title` - title of note
 - `content` - content the note
 
-Response body:
+**Response body:**
 - `title` - title of note
 - `content` - content the note
 
@@ -71,11 +71,11 @@ Response body:
 
 Changes the content and title of the note with id `{noteId}` user with id `{userId}`
 
-Request body:
+**Request body:**
 - `title` - title of note
 - `content` - content the note
 
-Response body:
+**Response body:**
 - `title` - title of note
 - `content` - title of note
 
@@ -89,7 +89,7 @@ Delete note with id `{noteId}` user with id `{userId}`
 
 Return user with id `{userId}`
 
-Response body:
+**Response body:**
 - `id` - user id
 - `username` - username
 - `password` - user password
@@ -100,14 +100,14 @@ Response body:
 
 Update user with id `{userId}`
 
-Response body:
+**Response body:**
 - `id` - user id
 - `username` - username
 - `password` - user password
 - `confirmPassword` - password confirmation
 - `email` - user email
 
-Response body:
+**Response body:**
 - `id` - user id
 - `username` - username
 - `password` - user password
