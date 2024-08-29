@@ -48,6 +48,14 @@ public class UserServiceImpl implements UserDetailsService {
         if (!userDto.getPassword().equals(userDto.getConfirmPassword())) {
             throw new AccessDeniedException("Пароли не совпадают");
         }
+        if (getByUsername(userDto.getUsername()).isPresent()) {
+            throw new IllegalStateException(
+                    String.format("Пользователь %s уже существует", userDto.getUsername())
+            );
+        }
+        if (userRepository.findByEmail(userDto.getEmail()).isPresent()) {
+            throw new IllegalStateException("Указанная электронная почта уже занята");
+        }
 
         user.setUsername(userDto.getUsername());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
@@ -73,6 +81,10 @@ public class UserServiceImpl implements UserDetailsService {
 
     @Transactional
     public User createNewUser(UserDto userDto) {
+        if (userRepository.findByEmail(userDto.getEmail()).isPresent()) {
+            throw new IllegalStateException("Указанная электронная почта уже занята");
+        }
+
         User user = userMapper.toEntity(userDto);
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         user.setRoles(List.of(roleServiceImpl.getUserRole()));

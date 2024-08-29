@@ -21,7 +21,7 @@ public class NoteController {
         return noteService.getAllByUserId(id);
     }
 
-    @PostMapping("/new")
+    @PostMapping("/note/new")
     @PreAuthorize("@cse.canAccessUser(#userId)")
     public NoteDto create(
             @RequestBody NoteDto noteDto,

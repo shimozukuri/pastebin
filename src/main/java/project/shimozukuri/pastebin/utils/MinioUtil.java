@@ -8,9 +8,9 @@ import project.shimozukuri.pastebin.dtos.note.NoteDto;
 import project.shimozukuri.pastebin.exeptions.MinioException;
 import project.shimozukuri.pastebin.utils.properties.MinioProperties;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -47,7 +47,7 @@ public class MinioUtil {
     }
 
     @SneakyThrows
-    public void createBucket() {
+    private void createBucket() {
         boolean found = minioClient.bucketExists(BucketExistsArgs.builder()
                 .bucket(minioProperties.getBucket())
                 .build());
@@ -72,17 +72,22 @@ public class MinioUtil {
     }
 
     public String getNote(String name) {
-        GetObjectArgs properties = GetObjectArgs.builder()
-                .bucket(minioProperties.getBucket())
-                .object(name)
-                .build();
-
         try {
-            GetObjectResponse response = minioClient.getObject(properties);
+            InputStream inputStream = minioClient.getObject(
+                    GetObjectArgs.builder()
+                    .bucket(minioProperties.getBucket())
+                    .object(name)
+                    .build());
 
-            return response.object();
+            return getStringFromInputStream(inputStream);
         } catch (Exception e) {
             throw new MinioException("Ошибка выгрузки записи: " + e.getMessage());
         }
+    }
+
+    private String getStringFromInputStream(InputStream inputStream) {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+
+        return reader.lines().collect(Collectors.joining());
     }
 }

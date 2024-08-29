@@ -42,7 +42,7 @@ public class NoteServiceImpl implements NoteService {
     public NoteDto create(NoteDto noteDto, Long userId) {
         User user = userService.getById(userId);
         if (noteRepository.findByTitle(noteDto.getTitle()).isPresent()) {
-            throw new IllegalStateException("Статья с таким названием уже существует");
+            throw new IllegalStateException("Запись с таким названием уже существует");
         }
 
         minioUtil.uploadNote(noteDto);
@@ -59,6 +59,11 @@ public class NoteServiceImpl implements NoteService {
         userService.getById(userId);
         Note note = noteRepository.findById(noteId).orElseThrow(() ->
                 new ResourceNotFoundException("Запись не найдена"));
+        if (noteRepository.findByTitle(noteDto.getTitle()).isPresent()) {
+            throw new IllegalStateException("Запись с таким названием уже существует");
+        }
+
+        minioUtil.deleteNote(note.getTitle());
 
         note.setTitle(noteDto.getTitle());
 

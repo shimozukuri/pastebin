@@ -23,8 +23,8 @@ create table if not exists users_roles
     user_id bigserial not null,
     role_id bigserial not null,
     primary key (user_id, role_id),
-    constraint fk_users_roles_users foreign key (user_id) references users (id),
-    constraint fk_users_roles_roles foreign key (role_id) references roles (id)
+    constraint fk_users_roles_users foreign key (user_id) references users (id) on delete cascade on update no action,
+    constraint fk_users_roles_roles foreign key (role_id) references roles (id) on delete cascade on update no action
 );
 
 create table if not exists users_notes
@@ -32,6 +32,6 @@ create table if not exists users_notes
     user_id bigserial not null,
     note_id bigserial not null,
     primary key (user_id, note_id),
-    constraint fk_users_notes_users foreign key (user_id) references users (id),
-    constraint fk_users_notes_notes foreign key (note_id) references notes (id)
+    constraint fk_users_notes_users foreign key (user_id) references users (id) on delete cascade on update no action,
+    constraint fk_users_notes_notes foreign key (note_id) references notes (id) on delete cascade on update no action
 );

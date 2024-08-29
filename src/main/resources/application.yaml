@@ -3,7 +3,7 @@ jwt:
   lifetime: 10m
 minio:
   bucket: notes
-  endpoint: http://192.168.0.147:9000
+  endpoint: http://127.0.0.1:9000
   accessKey: Vfl5mDybCsAnilA3a7Vx
   secretKey: bs3VjEepJPcry9d35HengWsetEu80jUQKMajs6ze
 spring:
