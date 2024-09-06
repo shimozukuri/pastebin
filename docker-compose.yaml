@@ -1,37 +1,48 @@
-version: '2'
+version: '3'
+
+networks:
+  pastebin:
+    driver: bridge
 
 services:
   app:
     build:
       context: .
     container_name: pastebin
+    networks:
+      - pastebin
     depends_on:
       - db
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/pastebin?currenSchema=pastebin
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=postgres
+      - minio
+    env_file:
+      - .env
     ports:
       - '8080:8080'
 
   db:
     image: postgres:16.0-alpine
     container_name: postgres
+    networks:
+      - pastebin
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=pastebin
+      - POSTGRES_USER=${POSTGRES_USERNAME}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DATABASE}
+    ports:
+      - '5432:5432'
     volumes:
       - ./src/main/resources/db-init:/docker-entrypoint-initdb.d
 
   minio:
     image: minio/minio:latest
     container_name: minio
+    networks:
+      - pastebin
     restart: always
     command: server /data --console-address :9090
     environment:
-      - MINIO_ROOT_USER=admin
-      - MINIO_ROOT_PASSWORD=adminadmin
+      - MINIO_ROOT_USER=minioadmin
+      - MINIO_ROOT_PASSWORD=minioadmin
     ports:
       - '9000:9000'
       - '9090:9090'

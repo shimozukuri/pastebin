@@ -1,17 +1,9 @@
-jwt:
-  secret: 984hg493gh0439rthr0429uruj2309yh937gc763fe87t3f89723gf
-  lifetime: 10m
-minio:
-  bucket: notes
-  endpoint: http://127.0.0.1:9000
-  accessKey: Vfl5mDybCsAnilA3a7Vx
-  secretKey: bs3VjEepJPcry9d35HengWsetEu80jUQKMajs6ze
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost/pastebin?currenSchema=pastebin
-    username: postgres
-    password: postgres
+    url: jdbc:postgresql://${HOST}:5432/${POSTGRES_DATABASE}?currenSchema=${POSTGRES_SCHEMA}
+    username: ${POSTGRES_USERNAME}
+    password: ${POSTGRES_PASSWORD}
   jpa:
     show-sql: true
   main:
@@ -20,5 +12,15 @@ spring:
     change-log: classpath:liquibase/db.changelog.yaml
     enabled: true
     default-schema: pastebin
+  config:
+    import: optional:file:.env[.properties]
+jwt:
+  secret: ${JWT_SECRET}
+  lifetime: 10m
+minio:
+  bucket: ${MINIO_BUCKET}
+  endpoint: ${MINIO_URL}
+  accessKey: ${MINIO_ACCESS_KEY}
+  secretKey: ${MINIO_SECRET_KEY}
 springdoc:
   override-with-generic-response: false
